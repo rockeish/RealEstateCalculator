@@ -192,7 +192,6 @@
               const unit2Rent = Number(document.getElementById("unit2_rent").value);
               const unit3Rent = Number(document.getElementById("unit3_rent").value);
               const unit4Rent = Number(document.getElementById("unit4_rent").value);
-            
 
             // Calculate initial cost
             var initialCostDownPayment = downPayment;
