@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Real Estate Calculator</title>
+	<style>
+		body {
+			background-color: lightblue;
+		}
+	</style>
+</head>
+<body>
+            <!-- input values: -->
+            
+	<h1>Real Estate Calculator</h1>
+	<form method="post">
+		<h2>Inputs</h2>
+        <fieldset>
+            <legend>Purchase Information</legend>
+            
+            <label for="purchase_price">Purchase Price ($)</label>
+            <input type="number" id="purchase_price" name="purchase_price" min="0" step="0.01" required value="300000">
+
+            <label for="down_payment">Down Payment ($)</label>
+            <input type="number" id="down_payment" name="down_payment" min="0" step="0.01" required value="50000">
+            
+            <br>
+            
+            <label for="closing_cost">Closing Cost ($)</label>
+            <input type="number" id="closing_cost" name="closing_cost" min="0" step="0.01" required value="8000">
+
+            <label for="other_initial_cost">Other Initial Costs ($)</label>
+            <input type="number" id="other_initial_cost" name="other_initial_cost" min="0" step="0.01" required value="1000">
+            
+            <br>
+            
+            <label for="interest_rate">Interest Rate (%)</label>
+            <input type="number" id="interest_rate" name="interest_rate" min="0" step="0.01" required value="6">
+
+            <label for="loan_term">Loan Term (years)</label>
+            <input type="number" id="loan_term" name="loan_term" min="1" max="30" required value="30">
+            
+        </fieldset>
+        <br>
+        <fieldset>
+            
+            <legend>Expenses Information</legend>
+            
+            <label for="vacancy_rate">Vacancy Rate (% monthly)</label>
+            <input type="number" id="vacancy_rate" name="vacancy_rate" min="0" max="100" step="0.01" required value="5">
+
+            <label for="repairs_maintenance">Repairs and Maintenance ($ monthly)</label>
+            <input type="number" id="repairs_maintenance" name="repairs_maintenance" min="0" step="0.01" required value="200">
+            <br>
+            <label for="property_management">Property Management (% monthly)</label>
+            <input type="number" id="property_management" name="property_management" min="0" max="100" step="0.01" required value="8">
+
+            <label for="taxes">Taxes ($ yearly)</label>
+            <input type="number" id="taxes" name="taxes" min="0" step="0.01" required value="2000">
+            <br>
+            <label for="insurance">Insurance ($ yearly)</label>
+            <input type="number" id="insurance" name="insurance" min="0" step="0.01" required value="1800">
+
+            <label for="utilities">Utilities ($ monthly)</label>
+            <input type="number" id="utilities" name="utilities" min="0" step="0.01" required value="80">
+            <br>
+            <label for="other_expenses">Other Expenses ($ monthly)</label>
+            <input type="number" id="other_expenses" name="other_expenses" min="0" step="0.01" required value="60">
+            
+        </fieldset>
+        <br>
+        <fieldset>
+            
+            <legend>Rental Information</legend>
+           
+            <label for="unit1_rent">Unit #1 Rent</label>
+            <input type="number" id="unit1_rent" name="unit1_rent" min="0" step="0.01" required value="1000">
+
+            <label for="unit2_rent">Unit #2 Rent</label>
+            <input type="number" id="unit2_rent" name="unit2_rent" min="0" step="0.01" required value="1000">
+            <br>
+            <label for="unit3_rent">Unit #3 Rent</label>
+            <input type="number" id="unit3_rent" name="unit3_rent" min="0" step="0.01" required value="1000">
+            
+            <label for="unit4_rent">Unit #4 Rent</label>
+            <input type="number" id="unit4_rent" name="unit4_rent" min="0" step="0.01" required value="1000">
+            
+        </fieldset>
+        <br>
+        
+        <button type="button" onclick="calculate()">Calculate</button>
+        
+	</form>
+
+        <!-- output values: -->
+        
+        <h2>Initial Costs</h2>
+        <div class="row">
+            <div class="column">
+                <label for="initial_cost_purchase_price">Purchase Price</label><br>
+                <input type="text" id="initial_cost_purchase_price" name="initial_cost_purchase_price" readonly><br>
+        
+                <label for="initial_cost_down_payment">Down Payment</label><br>
+                <input type="text" id="initial_cost_down_payment" name="initial_cost_down_payment" readonly><br>
+        
+                <label for="initial_cost_closing_cost">Closing Cost</label><br>
+                <input type="text" id="initial_cost_closing_cost" name="initial_cost_closing_cost" readonly><br>
+        
+                <label for="initial_cost_other">Other Initial Costs</label><br>
+                <input type="text" id="initial_cost_other" name="initial_cost_other" readonly><br>
+        
+                <label for="total_initial_cost">Total Initial Cost</label><br>
+                <input type="text" id="total_initial_cost" name="total_initial_cost" readonly><br>
+            </div>
+         </div>
+         
+        <h2>Monthly Expenses</h2>
+        <div class="row">
+            <div class="column">
+                <label for="monthly_expense_loan_payment">Loan Payment</label><br>
+                <input type="text" id="monthly_expense_loan_payment" name="monthly_expense_loan_payment" readonly><br>
+        
+                <label for="monthly_expense_vacancy_loss">Vacancy Loss</label><br>
+                <input type="text" id="monthly_expense_vacancy_loss" name="monthly_expense_vacancy_loss" readonly><br>
+        
+                <label for="monthly_expense_repairs_and_maintenance">Repairs and Maintenance</label><br>
+                <input type="text" id="monthly_expense_repairs_and_maintenance" name="monthly_expense_repairs_and_maintenance" readonly><br>
+        
+                <label for="monthly_expense_property_management_fee">Property Management Fee</label><br>
+                <input type="text" id="monthly_expense_property_management_fee" name="monthly_expense_property_management_fee" readonly><br>
+        
+                <label for="monthly_expense_taxes">Taxes</label><br>
+                <input type="text" id="monthly_expense_taxes" name="monthly_expense_taxes" readonly><br> 
+                
+                <label for="monthly_expense_insurance">Insurance</label><br>
+                <input type="text" id="monthly_expense_insurance" name="monthly_expense_insurance" readonly><br>
+        
+                <label for="monthly_expense_utilities">Utilities</label><br>
+                <input type="text" id="monthly_expense_utilities" name="monthly_expense_utilities" readonly><br>
+        
+                <label for="monthly_expense_other">Other Expenses</label><br>
+                <input type="text" id="monthly_expense_other" name="monthly_expense_other" readonly><br>
+        
+                <label for="total_monthly_expenses">Total Monthly Expenses</label><br>
+                <input type="text" id="total_monthly_expenses" name="total_monthly_expenses" readonly><br>
+            </div>
+          </div>
+          
+        <h2>Performance Metrics</h2>
+        <div class="row">
+            <div class="column">
+                <label for="yearly_net_income">Yearly Net Income</label><br>
+                <input type="text" id="yearly_net_income" name="yearly_net_income" readonly><br>
+        
+                <label for="roi">ROI</label><br>
+                <input type="text" id="roi" name="roi" readonly><br>
+        
+                <label for="cap_rate">Cap Rate</label><br>
+                <input type="text" id="cap_rate" name="cap_rate" readonly><br>
+        
+                <label for="noi">NOI</label><br>
+                <input type="text" id="noi" name="noi" readonly><br>
+        
+                <label for="grm">GRM</label><br>
+                <input type="text" id="grm" name="grm" readonly><br>
+            </div>
+        </div>
+
+        <!-- Add other outputs here -->
+
+    </form>
+    
+    <script src="calculator.js"></script>
+    <script>
+
+    	
+    	function calculate() {
+              // get input values
+              const purchasePrice = Number(document.getElementById("purchase_price").value);
+              const downPayment = Number(document.getElementById("down_payment").value);
+              const closingCost = Number(document.getElementById("closing_cost").value);
+              const otherInitialCost = Number(document.getElementById("other_initial_cost").value);
+              const interestRate = Number(document.getElementById("interest_rate").value) / 100 / 12;
+              const loanTerm = Number(document.getElementById("loan_term").value) * 12;
+              const vacancyRate = Number(document.getElementById("vacancy_rate").value) / 100 / 12;
+              const repairsMaintenance = Number(document.getElementById("repairs_maintenance").value);
+              const propertyManagement = Number(document.getElementById("property_management").value) / 100 / 12;
+              const taxes = Number(document.getElementById("taxes").value) / 12;
+              const insurance = Number(document.getElementById("insurance").value) / 12;
+              const utilities = Number(document.getElementById("utilities").value);
+              const otherExpenses = Number(document.getElementById("other_expenses").value);
+              const unit1Rent = Number(document.getElementById("unit1_rent").value);
+              const unit2Rent = Number(document.getElementById("unit2_rent").value);
+              const unit3Rent = Number(document.getElementById("unit3_rent").value);
+              const unit4Rent = Number(document.getElementById("unit4_rent").value);
+            
+
+            // Calculate initial cost
+            var initialCostDownPayment = downPayment;
+            var initialCostPurchasePrice = purchasePrice;
+            var initialCostClosingCost = closingCost;
+            var initialCostOther = otherInitialCost;
+            var totalInitialCost = purchasePrice + closingCost + otherInitialCost;
+            
+            // Calculate monthly expenses
+            var monthlyExpenseLoanPayment = calculateLoanPayment(purchasePrice - downPayment, interestRate, loanTerm);
+            var monthlyExpenseVacancyLoss = calculateVacancyLoss(unit1Rent, unit2Rent, unit3Rent, unit4Rent, vacancyRate);
+            var monthlyExpenseRepairsMaintenance = repairsMaintenance;
+            var monthlyExpensePropertyManagementFee = calculatePropertyManagementFee(unit1Rent, unit2Rent, unit3Rent, unit4Rent, propertyManagement);
+            var monthlyExpenseTaxes = taxes / 12;
+            var monthlyExpenseInsurance = insurance / 12;
+            var monthlyExpenseUtilities = utilities;
+            var monthlyExpenseOther = otherExpenses;
+            var totalMonthlyExpenses = monthlyExpenseLoanPayment + monthlyExpenseVacancyLoss + monthlyExpenseRepairsMaintenance + monthlyExpensePropertyManagementFee + monthlyExpenseTaxes + monthlyExpenseInsurance + monthlyExpenseUtilities + monthlyExpenseOther;
+    
+            // Calculate Performance Metrics
+            var grossRentalIncome = unit1Rent + unit2Rent + unit3Rent + unit4Rent;
+            var effectiveRentalIncome = grossRentalIncome * (1 - vacancyRate);
+            var grossIncome = effectiveRentalIncome;
+            var operatingExpense = monthlyExpenseLoanPayment + monthlyExpenseVacancyLoss + monthlyExpenseRepairsMaintenance + monthlyExpensePropertyManagementFee + monthlyExpenseTaxes + monthlyExpenseInsurance + monthlyExpenseUtilities + monthlyExpenseOther;
+            var netIncome = grossIncome - operatingExpense;
+            var yearlyNetIncome = netIncome * 12;
+            var roi = yearlyNetIncome / totalInitialCost * 100;
+            var capRate = netIncome / purchasePrice * 100;
+            var noi = netIncome + taxes / 12;
+            var grm = purchasePrice / grossRentalIncome;         
+            
+            // display output values
+        
+            //initial cost 
+            document.getElementById("initial_cost_purchase_price").value = initialCostPurchasePrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("initial_cost_down_payment").value = initialCostDownPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("initial_cost_closing_cost").value = initialCostClosingCost.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("initial_cost_other").value = initialCostOther.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("total_initial_cost").value = totalInitialCost.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            
+            //monthly cost  
+            document.getElementById("monthly_expense_loan_payment").value = monthlyExpenseLoanPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("monthly_expense_vacancy_loss").value = monthlyExpenseVacancyLoss.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("monthly_expense_repairs_and_maintenance").value = monthlyExpenseRepairsMaintenance.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("monthly_expense_property_management_fee").value = monthlyExpensePropertyManagementFee.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("monthly_expense_taxes").value = monthlyExpenseTaxes.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("monthly_expense_insurance").value = monthlyExpenseInsurance.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("monthly_expense_utilities").value = monthlyExpenseUtilities.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("monthly_expense_other").value = monthlyExpenseOther.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("total_monthly_expenses").value = totalMonthlyExpenses.toLocaleString('en-US', { style: 'currency', currency: 'USD' });            
+              
+            //add performance metrics 
+            document.getElementById("yearly_net_income").value = yearlyNetIncome.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.getElementById("roi").value = roi
+            document.getElementById("cap_rate").value = capRate
+            document.getElementById("noi").value = noi
+            document.getElementById("grm").value = grm 
+    	}
+    	
+        // supportng functions	
+    	
+        function calculateLoanPayment(amount, interest_rate, term) {
+            var rate = interest_rate;
+            var payment = amount * rate / (1 - Math.pow(1 + rate, -term));
+            return payment;
+        }
+
+        function calculateVacancyLoss(rent1, rent2, rent3, rent4, vacancy_rate) {
+            var total_rent = rent1 + rent2 + rent3 + rent4;
+            var vacancy_loss = total_rent * vacancy_rate;
+            return vacancy_loss;
+        }
+
+        function calculatePropertyManagementFee(rent1, rent2, rent3, rent4, management_fee) {
+            var total_rent = rent1 + rent2 + rent3 + rent4;
+            var property_management_fee = total_rent * management_fee / 100;
+            return property_management_fee;
+        }
+
+        function formatCurrency(amount) {
+            var formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+            return formatter.format(amount);
+        }
+        // Add other functions below
+        
+    	function numberWithCommas(x) {
+    		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    	}
+    	
+    </script>
+</body>
+</html>
